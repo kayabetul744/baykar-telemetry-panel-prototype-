@@ -1,5 +1,14 @@
 # Dinamik Telemetri ve Görev Ön İzleme Paneli
 
+> **Baykar Yüksek İrtifa Yetenek Programı** başvurusu için hazırlanan 3 parçalı prototip serisinin 2. parçası:
+> 🗺️ [Waypoint & Rota Planlama](https://github.com/kayabetul744/baykar-mission-planner-prototype) · 📡 **Telemetri & Operatör Paneli** (bu repo) · 🛬 [Kalkış/İniş Pisti Uygunluk Analizi](https://github.com/kayabetul744/baykar-runway-siting-prototype)
+
+![Telemetri Paneli Önizlemesi](docs/telemetry_preview.png)
+*Soldan sağa: mock sunucunun gerçekten ürettiği uçuş rotası, aynı sunucudan alınan gerçek irtifa/hız zaman
+serisi, ve `OperatorPanelUI.cs`'deki alan/düzen mantığını yansıtan bir mockup (Unity Canvas ekran görüntüsü
+değildir — bu ortamda Unity Editor mevcut olmadığından, alan yerleşimini gösteren elle çizilmiş bir
+diyagram kullandım). İlk iki panel gerçek, çalıştırılmış `telemetry_server.py` çıktısına dayanır.*
+
 Bu prototip, **Baykar Yüksek İrtifa Yetenek Programı** ilanındaki *"Sanal Etkileşimli Misyon Asistanı"*
 konseptinin operatör/telemetri tarafına yönelik hazırlanmış, geliştirme aşamasındaki bir AR-GE çalışmasıdır.
 Amaç; dış bir sunucudan (gerçek hayatta bir Yer Kontrol İstasyonu / GCS) gelen anlık uçuş verisinin

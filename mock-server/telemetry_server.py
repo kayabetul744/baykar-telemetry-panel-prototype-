@@ -23,8 +23,10 @@ ORBIT_PERIOD_SECONDS = 60.0
 START_TIME = time.time()
 
 
-def build_telemetry():
-    elapsed = time.time() - START_TIME
+def compute_state(elapsed):
+    # Zamana bagli tek gercek kaynagi: hem canli sunucu hem de
+    # tools/preview_telemetry.py bu fonksiyonu kullanir, boylece onizleme
+    # gorseli sunucunun urettigi degerlerle birebir aynidir.
     angle = (elapsed / ORBIT_PERIOD_SECONDS) * 2 * math.pi
 
     latitude = CENTER_LAT + RADIUS_DEG * math.sin(angle)
@@ -38,7 +40,7 @@ def build_telemetry():
 
     return {
         "aircraftId": "TB2-01",
-        "timestampUtc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "elapsedSeconds": elapsed,
         "latitude": round(latitude, 6),
         "longitude": round(longitude, 6),
         "altitudeMeters": round(altitude, 1),
@@ -48,6 +50,13 @@ def build_telemetry():
         "status": status,
         "linkQuality": round(0.85 + 0.1 * math.sin(elapsed / 5.0), 2),
     }
+
+
+def build_telemetry():
+    state = compute_state(time.time() - START_TIME)
+    state["timestampUtc"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    del state["elapsedSeconds"]
+    return state
 
 
 class TelemetryHandler(BaseHTTPRequestHandler):
